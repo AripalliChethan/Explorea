@@ -1,0 +1,191 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<style>
+/* ================= GLOBAL ================= */
+body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    background:
+        radial-gradient(circle at top left, rgba(0, 150, 255, 0.18), transparent 45%),
+        radial-gradient(circle at bottom right, rgba(255, 200, 0, 0.18), transparent 45%),
+        linear-gradient(135deg, #f1f5f9, #e2e8f0);
+    background-attachment: fixed;
+}
+
+/* ================= HERO ================= */
+.city-hero {
+    width: 100%;
+    height: 100vh;
+    background:
+        linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.75)),
+        url('{{ city.img.url }}');
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    text-align: center;
+    animation: heroZoom 20s ease-in-out infinite alternate;
+}
+
+@keyframes heroZoom {
+    from { background-size: 100%; }
+    to { background-size: 110%; }
+}
+
+.hero-content h1 {
+    font-size: 5.2rem;
+    font-weight: 900;
+    letter-spacing: 7px;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+    text-shadow: 0 8px 30px rgba(0,0,0,0.8);
+}
+
+.hero-content p {
+    font-size: 1.4rem;
+    font-style: italic;
+    opacity: 0.95;
+    max-width: 800px;
+    margin: auto;
+    text-shadow: 0 4px 15px rgba(0,0,0,0.8);
+}
+
+/* ================= CONTENT ================= */
+.content-wrapper {
+    max-width: 85%;
+    margin: auto;
+    padding-top: 60px;
+}
+
+/* ================= PLACE CARDS ================= */
+.place-card {
+    border-radius: 32px;
+    background: rgba(255, 255, 255, 0.92);
+    box-shadow: 0 25px 60px rgba(0,0,0,0.12);
+    overflow: hidden;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(8px);
+    height: auto%;
+}
+
+.place-card:hover {
+    transform: translateY(-14px) scale(1.01);
+    box-shadow: 0 35px 80px rgba(0,0,0,0.18);
+}
+
+.place-img {
+    width: 80%;
+    height: 420px;
+    object-fit: cover;
+    display: block;
+    margin: 30px auto 0;
+    border-radius: 30px;
+    transition: transform 0.5s ease;
+}
+
+.place-card:hover .place-img {
+    transform: scale(1.08);
+}
+
+.place-body {
+    padding: 12px 16px ;
+    text-align: center;
+}
+
+.place-body h4 {
+    font-weight: 800;
+    font-size: 1.25rem;
+    margin-bottom: 4px;
+    color: #1f2937;
+}
+
+.place-body p {
+    margin-bottom: 0;
+    font-size: 0.95rem;
+    color: #6b7280;
+    line-height: 1.35;
+}
+
+/* ================= BUTTON ================= */
+.explore-btn {
+    background: linear-gradient(135deg, #111827, #374151);
+    color: #fff;
+    padding: 16px 60px;
+    font-size: 1.1rem;
+    border-radius: 60px;
+    transition: all 0.3s ease;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+}
+
+.explore-btn:hover {
+    background: linear-gradient(135deg, #1f2937, #4b5563);
+    transform: translateY(-4px);
+    color: #fff;
+}
+
+/* ================= RESPONSIVE ================= */
+@media (max-width: 768px) {
+    .hero-content h1 {
+        font-size: 3.2rem;
+        letter-spacing: 4px;
+    }
+
+    .place-img {
+    margin-top: 16px;
+    margin-bottom: 8px;
+}
+
+    .content-wrapper {
+        max-width: 95%;
+    }
+}
+</style>
+
+<!-- ================= HERO ================= -->
+<div class="city-hero">
+    <div class="hero-content">
+        <h1>{{ city.name }}</h1>
+        <p>"{{ city.desc }}"</p>
+    </div>
+</div>
+
+<!-- ================= CONTENT ================= -->
+<div class="container content-wrapper">
+    <div class="row mb-5">
+
+        {% for place in places %}
+        <div class="col-lg-6 col-md-6 col-sm-12 mb-5">
+            <div class="place-card">
+                <img src="{{ place.place_img.url }}"
+                     alt="{{ place.place_name }}"
+                     class="place-img">
+
+                <div class="place-body">
+                    <h4>{{ place.place_name }}</h4>
+                    <p>{{ place.place_desc }}</p>
+                </div>
+            </div>
+        </div>
+        {% empty %}
+        <div class="col-12 text-center py-5">
+            <h3 class="text-muted">
+                No locations added for {{ city.name }} yet.
+            </h3>
+        </div>
+        {% endfor %}
+
+    </div>
+</div>
+
+<!-- ================= CTA ================= -->
+<div class="text-center pb-5">
+    <a href="/" class="btn explore-btn">
+        Explore More Cities
+    </a>
+</div>
+
+{% endblock %}

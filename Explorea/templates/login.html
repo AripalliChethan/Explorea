@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login | Welcome Back</title>
+
+    <style>
+        /* 🌲 Nature Background (Different Image) */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background:
+                linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)),
+                url("https://images.unsplash.com/photo-1500530855697-b586d89ba3ee");
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            height: 100vh;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* ✨ Glossy Glass Login Card */
+        .login-container {
+            background: rgba(255, 255, 255, 0.25);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            padding: 40px;
+            border-radius: 18px;
+            width: 350px;
+            text-align: center;
+
+            box-shadow:
+                0 15px 35px rgba(0,0,0,0.35),
+                inset 0 1px 1px rgba(255,255,255,0.6);
+
+            border: 1px solid rgba(255,255,255,0.4);
+        }
+
+        /* ✨ Glossy Heading */
+        h2 {
+            color: #ffffff;
+            margin-bottom: 25px;
+            font-weight: 600;
+            text-shadow: 0 2px 6px rgba(0,0,0,0.5);
+        }
+
+        /* ✨ Glossy Inputs */
+        input[type="text"],
+        input[type="password"] {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border-radius: 10px;
+            font-size: 14px;
+
+            background: rgba(255,255,255,0.85);
+            border: 1px solid rgba(255,255,255,0.6);
+
+            box-shadow:
+                inset 0 2px 4px rgba(255,255,255,0.8),
+                0 2px 6px rgba(0,0,0,0.15);
+
+            transition: all 0.3s ease;
+        }
+
+        input[type="text"]:focus,
+        input[type="password"]:focus {
+            outline: none;
+            background: rgba(255,255,255,0.95);
+            box-shadow:
+                inset 0 2px 6px rgba(255,255,255,1),
+                0 0 0 2px rgba(118,75,162,0.6);
+        }
+
+        /* ✨ Glossy Button */
+        input[type="submit"] {
+            width: 100%;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 12px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            margin-top: 20px;
+
+            box-shadow:
+                0 6px 20px rgba(118,75,162,0.6),
+                inset 0 1px 1px rgba(255,255,255,0.6);
+
+            transition: all 0.3s ease;
+        }
+
+        input[type="submit"]:hover {
+            transform: translateY(-2px);
+            box-shadow:
+                0 10px 30px rgba(118,75,162,0.9),
+                inset 0 1px 1px rgba(255,255,255,0.8);
+        }
+
+        /* Messages */
+        .messages {
+            margin-top: 20px;
+        }
+
+        .error-message {
+            background: rgba(255, 220, 220, 0.9);
+            color: #a30000;
+            padding: 10px;
+            border-radius: 8px;
+            font-size: 14px;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="login-container">
+    <h2>Welcome Back</h2>
+
+    <form action="login" method="post">
+        {% csrf_token %}
+        <input type="text" name="username" placeholder="Username" required>
+        <input type="password" name="password" placeholder="Password" required>
+        <input type="submit" value="Sign In">
+    </form>
+
+    <div class="messages">
+        {% for message in messages %}
+        <div class="error-message">{{ message }}</div>
+        {% endfor %}
+    </div>
+
+    <p class="register-text">
+        Don’t have an account?
+        <a href="{% url 'register' %}">Register</a>
+    </p>
+</div>
+
+</body>
+</html>

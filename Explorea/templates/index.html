@@ -1,0 +1,892 @@
+{% load static %}
+{% static "images" as baseUrl %}
+<!DOCTYPE html>
+<html lang="en">
+<div class="hero">
+
+<head>
+	<title>Explorea</title>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="description" content="Travello template project">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="{% static 'styles/bootstrap4/bootstrap.min.css' %}">
+	<link href="{%static 'plugins/font-awesome-4.7.0/css/font-awesome.min.css' %}" rel="stylesheet" type="text/css">
+	<link rel="stylesheet" type="text/css" href="{%static 'plugins/OwlCarousel2-2.2.1/owl.carousel.css' %}">
+	<link rel="stylesheet" type="text/css" href="{%static 'plugins/OwlCarousel2-2.2.1/owl.theme.default.css' %}">
+	<link rel="stylesheet" type="text/css" href="{%static 'plugins/OwlCarousel2-2.2.1/animate.css' %}">
+	<link rel="stylesheet" type="text/css" href="{%static 'styles/main_styles.css' %}">
+	<link rel="stylesheet" type="text/css" href="{%static 'styles/responsive.css' %}">
+	<style>
+/* ===== MODERN UI CUSTOM STYLES ===== */
+
+/* =========================
+   GLASS NAVBAR
+========================= */
+.header {
+    background: rgba(0, 30, 45, 0.85);
+    backdrop-filter: blur(6px);
+    position: fixed;
+    width: 100%;
+    height: 70px;
+    z-index: 999;
+}
+
+.header_content,
+.header_content_inner {
+    height: 70px;
+    align-items: center !important;
+}
+
+/* Logo */
+.logo a {
+    font-size: 22px;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+/* Nav links */
+.main_nav ul {
+    align-items: center;
+}
+
+.main_nav ul li {
+    margin-right: 20px;
+}
+
+.main_nav ul li a {
+    font-size: 15px;
+    font-weight: 500;
+    transition: 0.3s;
+}
+
+.main_nav ul li a:hover {
+    color: #ffb400;
+}
+
+.header_phone {
+    font-size: 14px;
+}
+
+/* =========================
+   HERO TITLE
+========================= */
+.hero_title {
+    font-size: 64px;
+    font-weight: 800;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: #fff;
+    text-shadow: 0 10px 30px rgba(0,0,0,0.4);
+}
+
+/* =========================
+   SEARCH CARD
+========================= */
+.home_search_container {
+    background: #ffffff;
+    border-radius: 18px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.18);
+    padding: 35px 40px;
+
+    max-width: 900px;
+    margin: 0 auto;
+
+    position: relative;
+    transform: translateY(120px);
+    z-index: 10;
+}
+
+.home_search_title {
+    font-size: 22px;
+    font-weight: 700;
+    margin-bottom: 18px;
+}
+
+/* =========================
+   SEARCH INPUTS
+========================= */
+.home_search_form {
+    width: 100%;
+}
+
+.home_search_form .search_input {
+    flex: 1;
+    min-width: 260px;
+    margin-right: 15px;
+
+    border-radius: 12px;
+    padding: 16px 18px;
+     border: 2px groove #000;
+
+    background: #d9dee3;
+    color: #222;
+    font-size: 15px;
+
+    transition: 0.25s ease;
+}
+
+/* Remove margin on last input */
+.home_search_form .search_input:last-of-type {
+    margin-right: 0;
+}
+
+.search_input::placeholder {
+    color: #555;
+}
+
+.search_input:focus {
+    outline: none;
+    background: #cfd5db;
+    box-shadow: 0 0 0 2px rgba(255,180,0,0.35);
+}
+
+/* =========================
+   SEARCH BUTTON
+========================= */
+.home_search_button {
+    flex-shrink: 0;
+
+    margin-left: 12px;          /* 👉 moves button to right */
+
+    background: #ffb400;
+    color: #000;
+    font-weight: 600;
+
+    border-radius: 12px;
+    padding: 16px 30px;
+
+    border: 2px groove #000;    /* 👉 black groove border */
+
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+
+.home_search_button:hover {
+    background: #ff9f00;
+}
+
+/* =========================
+   MOBILE RESPONSIVE
+========================= */
+@media (max-width: 991px) {
+    .home_search_form .search_input {
+        width: 100%;
+        margin-right: 0;
+        margin-bottom: 12px;
+    }
+
+    .home_search_button {
+        width: 100%;
+    }
+
+    .home_search_container {
+        transform: translateY(80px);
+        padding: 30px 25px;
+    }
+
+    .hero_title {
+        font-size: 40px;
+    }
+}
+
+/* =========================
+   DESTINATION CARDS
+========================= */
+.destination {
+    border-radius: 18px;
+    overflow: hidden;
+    transition: 0.4s;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+.destination:hover {
+    transform: translateY(-12px);
+    box-shadow: 0 30px 60px rgba(0,0,0,0.2);
+}
+
+.destination_image img {
+    transition: 0.4s;
+}
+
+.destination_price {
+    font-size: 20px;
+    font-weight: 700;
+    color: #ffb400;
+}
+
+/* =========================
+   EXPLOREA SECTION
+========================= */
+.Explorea {
+    position: relative;
+    width: 150%;
+    height: 900px;
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+/* Background Image */
+.background_image {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center;
+    z-index: 1;
+}
+
+/* Dark overlay */
+.Explorea_overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.45);
+    z-index: 2;
+}
+
+/* Text container */
+.Explorea_container {
+    position: relative;
+    z-index: 3;
+    height: 100%;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    padding-bottom: 30px;
+    text-align: center;
+}
+
+.Explorea_text span {
+    display: block;
+    color: #fff;
+}
+
+.Explorea_title {
+    font-size: 22px;
+    font-weight: 600;
+}
+
+.Explorea_subtitle {
+    font-size: 14px;
+    opacity: 0.9;
+}
+
+/* =========================
+   FOOTER
+========================= */
+.newsletter_title {
+    font-size: 32px;
+    font-weight: 700;
+}
+
+.newsletter_button {
+    background: #ffb400;
+    color: #000;
+    border-radius: 8px;
+}
+/* FIX INPUT NOT TAKING TYPING */
+.home_search {
+    position: relative;
+    z-index: 1000;
+}
+
+.home_search_container {
+    position: relative;
+    z-index: 1001;
+}
+
+.search_input,
+.home_search_button {
+    position: relative;
+    z-index: 1002;
+}
+
+.background_image,
+.Explorea_overlay {
+    pointer-events: none;
+}
+
+
+</style>
+
+</head>
+
+<body>
+
+	<div class="super_container">
+
+		<!-- Header -->
+
+		<header class="header">
+			<div class="container">
+				<div class="row">
+					<div class="col">
+						<div class="header_content d-flex flex-row align-items-center justify-content-start">
+							<div class="header_content_inner d-flex flex-row align-items-end justify-content-start">
+								<div class="logo"><a href="index.html">Explorea</a></div>
+								<nav class="main_nav">
+									<ul class="d-flex flex-row align-items-start justify-content-start">
+										<li class="active"><a href="">Home</a></li>
+										<!--<li><a href="contact.html">Contact</a></li>-->
+										{% if user.is_authenticated %}
+										<li>Hello, {{user.first_name}}</li>
+										<li><a href="accounts\logout">logout</a></li>
+										{% else %}
+										<li><a href="accounts\register">Register</a></li>
+										<li><a href="accounts\login">login</a></li>
+										{% endif %}
+									</ul>
+								</nav>
+								<!--<div class="header_phone ml-auto">Call us: 00-56 445 678 33</div>-->
+
+								<!-- Hamburger -->
+
+								<div class="hamburger ml-auto">
+									<i class="fa fa-bars" aria-hidden="true"></i>
+								</div>
+
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+<!--			<div class="header_social d-flex flex-row align-items-center justify-content-start">-->
+<!--				<ul class="d-flex flex-row align-items-start justify-content-start">-->
+<!--					<li><a href="#"><i class="fa fa-pinterest" aria-hidden="true"></i></a></li>-->
+<!--					<li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>-->
+<!--					<li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>-->
+<!--					<li><a href="#"><i class="fa fa-dribbble" aria-hidden="true"></i></a></li>-->
+<!--					<li><a href="#"><i class="fa fa-behance" aria-hidden="true"></i></a></li>-->
+<!--					<li><a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i></a></li>-->
+<!--				</ul>-->
+<!--			</div>-->
+		</header>
+
+		<!-- Menu -->
+
+		<div class="menu">
+			<div class="menu_header d-flex flex-row align-items-center justify-content-start">
+				<div class="menu_logo"><a href="index.html">Explorea</a></div>
+				<div class="menu_close_container ml-auto">
+					<div class="menu_close">
+						<div></div>
+						<div></div>
+					</div>
+				</div>
+			</div>
+			<div class="menu_content">
+				<ul>
+					<li><a href="index.html">Home</a></li>
+					<li><a href="about.html">About us</a></li>
+					<li><a href="#">Services</a></li>
+					<li><a href="news.html">News</a></li>
+					<!--<li><a href="contact.html">Contact</a></li>-->
+				</ul>
+			</div>
+			<div class="menu_social">
+				<div class="menu_phone ml-auto">Call us: 00-56 445 678 33</div>
+				<ul class="d-flex flex-row align-items-start justify-content-start">
+					<li><a href="#"><i class="fa fa-pinterest" aria-hidden="true"></i></a></li>
+					<li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+					<li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+					<li><a href="#"><i class="fa fa-dribbble" aria-hidden="true"></i></a></li>
+					<li><a href="#"><i class="fa fa-behance" aria-hidden="true"></i></a></li>
+					<li><a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i></a></li>
+				</ul>
+			</div>
+		</div>
+
+		<!-- Home -->
+
+		<div class="home">
+
+			<!-- Home Slider -->
+			<div class="home_slider_container">
+				<div class="owl-carousel owl-theme home_slider">
+
+					<!-- Slide -->
+					<div class="owl-item">
+						<div class="background_image"
+							style="background-image:url({% static 'images/coverimage.hero.png' %})"></div>
+						<div class="home_slider_content_container">
+							<div class="container">
+								<div class="row">
+									<div class="col">
+										<div class="home_slider_content">
+											<div class="home_title">
+												<h2 class="hero_title">Let us take you away</h2>
+
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<!-- Slide -->
+					<div class="owl-item">
+						<div class="background_image"
+							style="background-image:url({% static 'images/coverimage.hero.png' %})"></div>
+						<div class="home_slider_content_container">
+							<div class="container">
+								<div class="row">
+									<div class="col">
+										<div class="home_slider_content">
+											<div class="home_title">
+												<h2>Let us take you away</h2>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<!-- Slide -->
+					<div class="owl-item">
+						<div class="background_image"
+							style="background-image:url({% static 'images/coverimage.hero.png' %})"></div>
+						<div class="home_slider_content_container">
+							<div class="container">
+								<div class="row">
+									<div class="col">
+										<div class="home_slider_content">
+											<div class="home_title">
+												<h2>Let us take you away</h2>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+				</div>
+
+				<div class="home_page_nav">
+					<ul class="d-flex flex-column align-items-end justify-content-end">
+						<li><a href="#" data-scroll-to="#destinations">Offers<span>01</span></a></li>
+						<li><a href="#" data-scroll-to="#testimonials">Testimonials<span>02</span></a></li>
+						<li><a href="#" data-scroll-to="#news">Latest<span>03</span></a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+
+		<!-- Search -->
+
+		<!-- Search -->
+		<div class="home_search">
+			<div class="container">
+				<div class="row">
+					<div class="col">
+						<div class="home_search_container">
+							<div class="home_search_title">Search for your trip</div>
+							<div class="home_search_content">
+								<form method="GET" action="{% url 'index' %}" class="home_search_form">
+									<div class="d-flex flex-lg-row flex-column align-items-start justify-content-lg-between justify-content-start">
+
+										<input type="text"
+											class="search_input search_input_1"
+											name="city"
+											placeholder="City">
+
+										<input type="number"
+											class="search_input search_input_2"
+											name="budget"
+											placeholder="Budget">
+
+										<button class="home_search_button" type="submit">
+											search
+										</button>
+
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+		<!-- Intro -->
+
+		<div class="intro">
+			<div class="intro_background" style="background-image:url({% static 'images/intro.png' %})"></div>
+			<div class="container">
+				<div class="row">
+					<div class="col">
+						<div class="intro_container">
+							<div class="row">
+
+								<!-- Intro Item -->
+								<div class="col-lg-4 intro_col">
+									<div class="intro_item d-flex flex-row align-items-end justify-content-start">
+										<div class="intro_icon"><img src="{% static 'images/beach.svg' %}" alt=""></div>
+										<div class="intro_content">
+											<div class="intro_title">Top Destinations</div>
+											<div class="intro_subtitle">
+												<p>Mumbai, Tirupati, Vishakapatnam, etc.</p>
+											</div>
+										</div>
+									</div>
+								</div>
+
+								<!-- Intro Item -->
+								<div class="col-lg-4 intro_col">
+									<div class="intro_item d-flex flex-row align-items-end justify-content-start">
+										<div class="intro_icon"><img src="{% static 'images/wallet.svg' %}" alt="">
+										</div>
+										<div class="intro_content">
+											<div class="intro_title">The Best Prices</div>
+											<div class="intro_subtitle">
+												<p>Committed to strong foundations and progress.</p>
+											</div>
+										</div>
+									</div>
+								</div>
+
+								<!-- Intro Item -->
+								<div class="col-lg-4 intro_col">
+									<div class="intro_item d-flex flex-row align-items-end justify-content-start">
+										<div class="intro_icon"><img src="{% static 'images/suitcase.svg' %}" alt="">
+										</div>
+										<div class="intro_content">
+											<div class="intro_title">Amazing Services</div>
+											<div class="intro_subtitle">
+												<p>Focused on quality and precision.</p>
+											</div>
+										</div>
+									</div>
+								</div>
+
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- Destinations -->
+
+		<div class="destinations" id="destinations">
+			<div class="container">
+				<div class="row">
+					<div class="col text-center">
+						<div class="section_subtitle">simply amazing places</div>
+						<div class="section_title">
+							<h2>Popular Destinations</h2>
+						</div>
+					</div>
+				</div>
+				<div class="row destinations_row">
+					<div class="col">
+						<div class="destinations_container item_grid">
+
+							{% for dest in dests %}
+							<!-- Destination -->
+							<div class="destination item">
+								<div class="destination_image">
+									<img src="{{dest.img.url}}" alt="">
+									{% if dest.offer %}
+									<div class="spec_offer text-center"><a href="#">Special Offer</a></div>
+									{% endif %}
+								</div>
+								<div class="destination_content">
+									<div class="destination_title"><a href="{% url 'city_detail' dest.id %}">{{dest.name}}</a></div>
+									<div class="destination_subtitle">
+										<p>{{dest.desc}}</p>
+									</div>
+									<div class="destination_price">From ${{dest.price}}</div>
+								</div>
+							</div>
+
+							{% endfor %}
+
+
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- Testimonials -->
+
+		<div class="testimonials" id="testimonials">
+			<div class="parallax_background parallax-window" data-parallax="scroll"
+				data-image-src="{% static 'images/testimonials_2.png' %}" data-speed="0.8"></div>
+			<div class="container">
+				<div class="row">
+					<div class="col text-center">
+						<div class="section_subtitle">simply amazing places</div>
+						<div class="section_title">
+							<h2>Testimonials</h2>
+						</div>
+					</div>
+				</div>
+				<div class="row testimonials_row">
+					<div class="col">
+
+						<!-- Testimonials Slider -->
+						<div class="testimonial">
+							<div class="owl-carousel owl-theme testimonials_slider">
+
+								<!-- Slide -->
+								<div class="owl-item text-center">
+									<div class="testimonial">“Experience unforgettable journeys with carefully curated
+										destinations. Discover beautiful places, comfortable stays, and seamless travel
+										planning designed just for you.”.</div>
+									<div class="testimonial_author">
+										<div
+											class="testimonial_author_content d-flex flex-row align-items-end justify-content-start">
+											<div>Chaitu😊,</div>
+											<div>client</div>
+										</div>
+									</div>
+								</div>
+
+
+
+
+
+
+								</div>
+
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="test_nav">
+				<ul class="d-flex flex-column align-items-end justify-content-end">
+					<li><a href="#">City Breaks Clients<span>01</span></a></li>
+					<li><a href="#">Cruises Clients<span>02</span></a></li>
+					<li><a href="#">All Inclusive Clients<span>03</span></a></li>
+				</ul>
+			</div>
+		</div>
+
+		<!-- News -->
+
+		<div class="news" id="news">
+			<div class="container">
+				<div class="row">
+					<div class="col-xl-8">
+						<div class="news_container">
+
+							<!-- News Post -->
+							<div
+								class="news_post d-flex flex-md-row flex-column align-items-start justify-content-start">
+								<div class="news_post_image"><img src="{% static 'images/desert.png' %}" alt=""></div>
+								<div class="news_post_content">
+									<div class="news_post_date d-flex flex-row align-items-end justify-content-start">
+										<div>02</div>
+										<div>june</div>
+									</div>
+									<div class="news_post_title"><a href="#">Best tips to travel light</a></div>
+									<div class="news_post_category">
+										<ul>
+											<li><a href="#">lifestyle & travel</a></li>
+										</ul>
+									</div>
+									<div class="news_post_text">
+										<p>Traveling on a camel in the desert is a rhythmic, swaying journey, often described as
+											a peaceful rocking motion, like a boat on gentle waves, offering vast, serene views of
+											sand dunes as you move with the "ship of the desert".</p>
+									</div>
+								</div>
+							</div>
+
+							<!-- News Post -->
+							<div
+								class="news_post d-flex flex-md-row flex-column align-items-start justify-content-start">
+								<div class="news_post_image"><img src="{% static 'images/flight.png' %}" alt=""></div>
+								<div class="news_post_content">
+									<div class="news_post_date d-flex flex-row align-items-end justify-content-start">
+										<div>01</div>
+										<div>june</div>
+									</div>
+									<div class="news_post_title"><a href="#">Best tips to travel light</a></div>
+									<div class="news_post_category">
+										<ul>
+											<li><a href="#">lifestyle & travel</a></li>
+										</ul>
+									</div>
+									<div class="news_post_text">
+										<p>Traveling in the sky is like gliding above the world, where clouds become a
+											fluffy carpet and cities shrink to tiny models, offering a breathtaking,
+											dreamlike journey as the plane soars effortlessly through blue expanse.</p>
+									</div>
+								</div>
+							</div>
+
+							<!-- News Post -->
+							<div
+								class="news_post d-flex flex-md-row flex-column align-items-start justify-content-start">
+								<div class="news_post_image"><img src="{% static 'images/boats.jpg' %}" alt=""></div>
+								<div class="news_post_content">
+									<div class="news_post_date d-flex flex-row align-items-end justify-content-start">
+										<div>29</div>
+										<div>may</div>
+									</div>
+									<div class="news_post_title"><a href="#">Best tips to travel light</a></div>
+									<div class="news_post_category">
+										<ul>
+											<li><a href="#">lifestyle & travel</a></li>
+										</ul>
+									</div>
+									<div class="news_post_text">
+										<p>Gliding between two green hills, our small boat sliced the glassy water, a
+											tranquil passage where sunlight dappled the banks and the air smelled of damp
+											earth, echoing with distant birdsong as we drifted into the heart of nature's
+											quiet embrace. The gentle rocking soothed us, framing the majestic, tree-lined
+											slopes that framed our peaceful journey, a moment of pure, serene escape. </p>
+									</div>
+								</div>
+							</div>
+
+						</div>
+					</div>
+
+					<!-- News Sidebar -->
+					<div class="col-xl-4">
+						<div class="Explorea">
+							<div class="background_image"
+								style="background-image:url({% static 'images/Explorea.png' %})"></div>
+							<div class="Explorea_content">
+								<div class="Explorea_content_inner">
+									<div></div>
+									<div></div>
+								</div>
+							</div>
+							<div class="Explorea_container">
+								<a href="#">
+									<div class="d-flex flex-column align-items-center justify-content-end">
+										<span class="Explorea_title">Get a 20% Discount</span>
+										<span class="Explorea_subtitle">Buy Your Vacation Online Now</span>
+									</div>
+								</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- Footer -->
+
+		<footer class="footer">
+			<div class="parallax_background parallax-window" data-parallax="scroll"
+				data-image-src="{% static 'images/footer_2.png' %}" data-speed="0.8"></div>
+			<div class="container">
+				<div class="row">
+					<div class="col">
+						<div class="newsletter">
+							<div class="newsletter_title_container text-center">
+								<div class="newsletter_title">Subscribe to our newsletter to get the latest trends &
+									news</div>
+								<div class="newsletter_subtitle">Join our database NOW!</div>
+							</div>
+							<div class="newsletter_form_container">
+								<form action="#"
+									class="newsletter_form d-flex flex-md-row flex-column align-items-start justify-content-between"
+									id="newsletter_form">
+									<div
+										class="d-flex flex-md-row flex-column align-items-start justify-content-between">
+										<div><input type="text" class="newsletter_input newsletter_input_name"
+												id="newsletter_input_name" placeholder="Name" required="required">
+											<div class="input_border"></div>
+										</div>
+										<div><input type="email" class="newsletter_input newsletter_input_email"
+												id="newsletter_input_email" placeholder="Your e-mail"
+												required="required">
+											<div class="input_border"></div>
+										</div>
+									</div>
+									<div><button class="newsletter_button">subscribe</button></div>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="row footer_contact_row">
+					<div class="col-xl-10 offset-xl-1">
+						<div class="row">
+
+							<!-- Footer Contact Item -->
+							<div class="col-xl-4 footer_contact_col">
+								<div
+									class="footer_contact_item d-flex flex-column align-items-center justify-content-start text-center">
+									<div class="footer_contact_icon"><img src="{% static 'images/sign.svg' %}" alt="">
+									</div>
+									<div class="footer_contact_title">give us a call</div>
+									<div class="footer_contact_list">
+										<ul>
+											<li>Office Landline: +44 5567 32 664 567</li>
+											<li>Mobile: +44 5567 89 3322 332</li>
+										</ul>
+									</div>
+								</div>
+							</div>
+
+							<!-- Footer Contact Item -->
+							<div class="col-xl-4 footer_contact_col">
+								<div
+									class="footer_contact_item d-flex flex-column align-items-center justify-content-start text-center">
+									<div class="footer_contact_icon"><img src="{% static 'images/trekking.svg' %}"
+											alt=""></div>
+									<div class="footer_contact_title">come & drop by</div>
+									<div class="footer_contact_list">
+										<ul style="max-width:190px">
+											<li>4124 Barnes Street, Sanford, FL 32771</li>
+										</ul>
+									</div>
+								</div>
+							</div>
+
+							<!-- Footer Contact Item -->
+							<div class="col-xl-4 footer_contact_col">
+								<div
+									class="footer_contact_item d-flex flex-column align-items-center justify-content-start text-center">
+									<div class="footer_contact_icon"><img src="{% static 'images/around.svg' %}" alt="">
+									</div>
+									<div class="footer_contact_title">send us a message</div>
+									<div class="footer_contact_list">
+										<ul>
+											<li>youremail@gmail.com</li>
+											<li>Office@yourbusinessname.com</li>
+										</ul>
+									</div>
+								</div>
+							</div>
+
+						</div>
+					</div>
+				</div>
+			</div>
+<!--			<div class="col text-center">-->
+<!--				&lt;!&ndash; Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. &ndash;&gt;-->
+<!--				Copyright &copy;-->
+<!--				<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made-->
+<!--				with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com"-->
+<!--					target="_blank">Colorlib</a>-->
+<!--				&lt;!&ndash; Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. &ndash;&gt;-->
+<!--			</div>-->
+		</footer>
+	</div>
+
+	<script src="{% static 'js/jquery-3.2.1.min.js' %}"></script>
+	<script src="{% static 'styles/bootstrap4/popper.js' %}"></script>
+	<script src="{% static 'styles/bootstrap4/bootstrap.min.js' %}"></script>
+	<script src="{% static 'plugins/OwlCarousel2-2.2.1/owl.carousel.js' %}"></script>
+	<script src="{% static 'plugins/Isotope/isotope.pkgd.min.js' %}"></script>
+	<script src="{% static 'plugins/scrollTo/jquery.scrollTo.min.js' %}"></script>
+	<script src="{% static 'plugins/easing/easing.js' %}"></script>
+	<script src="{% static 'plugins/parallax-js-master/parallax.min.js' %}"></script>
+	<script src="{% static 'js/custom.js' %}"></script>
+</body>
+
+</html>

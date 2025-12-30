@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Account</title>
+
+    <style>
+        /* 🌿 Nature Background */
+        body {
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background:
+                linear-gradient(rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.35)),
+                url("https://images.unsplash.com/photo-1501785888041-af3ef285b470");
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            height: 100vh;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* ✨ Glossy Glass Card */
+        .reg-container {
+            background: rgba(255, 255, 255, 0.25);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            padding: 40px;
+            border-radius: 20px;
+            width: 100%;
+            max-width: 450px;
+
+            box-shadow:
+                0 15px 35px rgba(0, 0, 0, 0.3),
+                inset 0 1px 1px rgba(255, 255, 255, 0.6);
+
+            border: 1px solid rgba(255, 255, 255, 0.4);
+        }
+
+        /* ✨ Glossy Text */
+        h2 {
+            text-align: center;
+            color: #ffffff;
+            margin-bottom: 10px;
+            font-size: 28px;
+            text-shadow: 0 2px 6px rgba(0,0,0,0.4);
+        }
+
+        p.subtitle {
+            text-align: center;
+            color: rgba(255,255,255,0.9);
+            margin-bottom: 30px;
+            font-size: 14px;
+        }
+
+        /* Name fields */
+        .name-group {
+            display: flex;
+            gap: 15px;
+        }
+
+        /* ✨ Glossy Inputs */
+        input {
+            width: 100%;
+            padding: 14px;
+            margin-bottom: 15px;
+            border-radius: 10px;
+            font-size: 14px;
+
+            background: rgba(255, 255, 255, 0.85);
+            border: 1px solid rgba(255, 255, 255, 0.6);
+
+            box-shadow:
+                inset 0 2px 4px rgba(255, 255, 255, 0.8),
+                0 2px 6px rgba(0, 0, 0, 0.15);
+
+            transition: all 0.3s ease;
+        }
+
+        input:focus {
+            outline: none;
+            background: rgba(255, 255, 255, 0.95);
+            box-shadow:
+                inset 0 2px 6px rgba(255, 255, 255, 1),
+                0 0 0 2px rgba(102, 166, 255, 0.6);
+        }
+
+        /* ✨ Glossy Button */
+        input[type="submit"] {
+            background: linear-gradient(135deg, #66a6ff, #89f7fe);
+            color: white;
+            border: none;
+            font-weight: 600;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+
+            box-shadow:
+                0 6px 20px rgba(102, 166, 255, 0.6),
+                inset 0 1px 1px rgba(255, 255, 255, 0.6);
+
+            transition: all 0.3s ease;
+        }
+
+        input[type="submit"]:hover {
+            transform: translateY(-2px);
+            box-shadow:
+                0 10px 30px rgba(102, 166, 255, 0.9),
+                inset 0 1px 1px rgba(255, 255, 255, 0.8);
+        }
+
+        /* Messages */
+        .message-box {
+            margin-top: 15px;
+            text-align: center;
+        }
+
+        .alert {
+            padding: 10px;
+            background: rgba(255, 230, 230, 0.9);
+            color: #b30000;
+            border-radius: 8px;
+            font-size: 13px;
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="reg-container">
+    <h2>Join Us</h2>
+    <p class="subtitle">Create your account in seconds</p>
+
+    <form action="register" method="post">
+        {% csrf_token %}
+
+        <div class="name-group">
+            <input type="text" name="first_name" placeholder="First Name" required>
+            <input type="text" name="last_name" placeholder="Last Name" required>
+        </div>
+
+        <input type="text" name="username" placeholder="Username" required>
+        <input type="email" name="email" placeholder="Email Address" required>
+        <input type="password" name="password1" placeholder="Password" required>
+        <input type="password" name="password2" placeholder="Confirm Password" required>
+
+        <input type="submit" value="Create Account">
+    </form>
+
+    <div class="message-box">
+        {% for message in messages %}
+        <div class="alert">{{ message }}</div>
+        {% endfor %}
+    </div>
+
+    <p class="register-text">
+        Already have an account?
+        <a href="{% url 'login' %}">Login</a>
+    </p>
+
+</div>
+
+</body>
+</html>
