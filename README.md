@@ -18,7 +18,7 @@ Explorea is a modern Django-based travel web app where users can search destinat
 
 - **Frontend**: HTML5, CSS3, Bootstrap 4, JavaScript, Owl Carousel, Font Awesome  
 - **Backend**: Python, Django  
-- **Database**: SQLite (default Django)
+- **Database**: PostgreSQL
 
 ---
 
@@ -27,10 +27,10 @@ Explorea is a modern Django-based travel web app where users can search destinat
 
 #### **Clone repository**
 ```bash
-git clone https://github.com/your-username/explorea.git
-cd explorea
+git clone https://github.com/AripalliChethan/Explorea.git
+cd Explorea
 ```
-#### Create virtual environment
+#### Create virtual environment (Optional but recommended)
 ```bash
 python -m venv venv
 venv\Scripts\activate   # Windows
